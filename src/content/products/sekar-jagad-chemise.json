@@ -1,0 +1,23 @@
+{
+  "name": "Sekar Jagad Chemise",
+  "price": 1250000,
+  "collection": "Modern Heritage",
+  "category": "clothing",
+  "description": "A high-end batik dress with earthy tones featuring a minimalist silhouette.",
+  "materialHeritage": "Hand-stamped Cotton Primissima. Crafted in Solo, Central Java. Each pattern is applied using traditional copper stamps (cap) with natural beeswax resist.",
+  "mainImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuB7g-NqkZNEhga_DYhVM0JgqYT2W5wxDcrdl1zCD12ffOQ9IbQNR71F8gQUxylGM9pb-tWzFncjrZJIeDIwmCDUEp-uVGkrZ4nGhjzHWulzfSr3rbD24swEZha5utnLe0k6i1ZyB6arvGhW7pgTr9vu5_BizPDZV5mnAhsvKX5KrwOkW53lAgazJTVyYEuoxffRmttF9f9mfF2QoUoTJAkMMdN6UYiNYbBSJZmd-Gzbq1fZ4Ze38x751Jlm0nJpQ-HlFvQxfjaiZFA",
+  "gallery": [
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuBB5KW7-A9dq3fMF7XIqjcyrQsPcv0iphtgw7KCJp-YO_t7Wpo_kHv7UnqZBicKV3UXmGdiGEOCBMagxxhv2-0Vlm4p9lGroWYEuRon9n61iY3l4k_JkHJS1mSPOEyASxS01SF5F7m0Fq_QI7NRuZBK-AdmtP5XQ4m9XWutyYRuswykSlUbHH0XsciuiJjWYQbBtoK3fNfj6OpUN90fsEq7uIGemNbgK4EybPU_I2WC2bdXgS0sHB1A1bSboe-WL0vRbb2s6YDxdrc"
+  ],
+  "modelInfo": {
+    "wearingSize": "Small (S)",
+    "height": "174 cm",
+    "bustWaist": "82 / 64 cm",
+    "modelImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDUAkQrIzMT4FfbQukS_KTB5h27zOiPZLC6kJgiJN8gOesWl_TH21ykcjHZtBfto2Nl5NhqKq2gprEHngmWDvlNPyL0q4VkrqQSO5DONeKvPh98i7Oez82LZzxPA_PDh76deecipYzM0YPUflHoxGtjiF2GbOlmkIs7Sm0pUaKC_nqRq71bPl8vYfdFZvS-vMLL87KKyQxveFR4T0g5qEKh62Zd1NvwGmuB1MiRmIAPB1rNFeze_xe8Fjhv9qD8OUprkE_r0u293x4"
+  },
+  "sizeChart": [
+    { "label": "Lingkar Dada", "s": "92", "m": "96", "l": "100" },
+    { "label": "Lebar Bahu", "s": "37", "m": "39", "l": "41" },
+    { "label": "Panjang Baju", "s": "110", "m": "112", "l": "115" }
+  ]
+}

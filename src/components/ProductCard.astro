@@ -1,0 +1,51 @@
+---
+interface Props {
+    name: string;
+    collection: string;
+    price: string;
+    image: string;
+    slug: string;
+    mt?: string;
+}
+
+const { name, collection, price, image, slug, mt = "" } = Astro.props;
+---
+
+<div class={`group flex flex-col gap-6 ${mt}`}>
+    <a
+        href={`/products/${slug}`}
+        class="aspect-[3/4] overflow-hidden bg-[#ebefec]"
+    >
+        <img
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            src={image}
+            alt={name}
+        />
+    </a>
+    <div class="flex flex-col gap-4">
+        <div class="flex justify-between items-start">
+            <div class="flex flex-col">
+                <span
+                    class="text-[10px] uppercase tracking-widest text-[#767c79]"
+                    >Collection: {collection}</span
+                >
+                <h4 class="serif-display text-2xl mt-1">{name}</h4>
+            </div>
+            <span class="text-sm text-[#5a605e]">{price}</span>
+        </div>
+        <div class="flex gap-2">
+            <button
+                class="w-8 h-8 flex items-center justify-center border border-[#adb3b0]/40 text-[10px] hover:bg-[#f8e6c5] transition-colors"
+                >S</button
+            >
+            <button
+                class="w-8 h-8 flex items-center justify-center border border-[#adb3b0]/40 text-[10px] hover:bg-[#f8e6c5] transition-colors"
+                >M</button
+            >
+            <button
+                class="w-8 h-8 flex items-center justify-center border border-[#adb3b0]/40 text-[10px] hover:bg-[#f8e6c5] transition-colors"
+                >L</button
+            >
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script is:inline>
+            // Theme setup based on prototype tailwind config
+            document.documentElement.classList.add('light');
+        </script>
+        <style is:global>
+            :root {
+                --surface: #f9f9f7;
+                --on-surface: #2d3432;
+                --primary: #5f5e60;
+                --on-primary: #faf7f9;
+                --secondary: #7b5556;
+                --tertiary-container: #f8e6c5;
+                --outline-variant: #adb3b0;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: var(--surface);
+                color: var(--on-surface);
+                margin: 0;
+            }
+
+            .serif-display {
+                font-family: 'Newsreader', serif;
+            }
+
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .hide-scrollbar::-webkit-scrollbar { display: none; }
+            .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        </style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

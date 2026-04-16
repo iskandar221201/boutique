@@ -1,0 +1,215 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import WhatsAppFooter from "../../components/WhatsAppFooter.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    const products = await getCollection("products");
+    return products.map((product) => ({
+        params: { slug: product.id },
+    }));
+}
+
+const { slug } = Astro.params;
+const product = await getEntry("products", slug);
+
+if (!product) {
+    return Astro.redirect("/404");
+}
+
+const { data } = product;
+
+// Format price
+const formattedPrice = `IDR ${data.price.toLocaleString("id-ID")}`;
+---
+
+<Layout title={`BOUTIQUE | ${data.name}`}>
+    <Header />
+    <main class="pt-20 pb-32">
+        <!-- Hero Gallery Section -->
+        <section
+            class="w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar flex gap-1 px-4"
+        >
+            <div class="flex-none w-[85vw] md:w-[45vw] snap-center">
+                <div class="aspect-[3/4] overflow-hidden bg-[#f2f4f2]">
+                    <img
+                        class="w-full h-full object-cover"
+                        src={data.mainImage}
+                        alt={data.name}
+                    />
+                </div>
+            </div>
+            {
+                data.gallery.map((img) => (
+                    <div class="flex-none w-[85vw] md:w-[45vw] snap-center">
+                        <div class="aspect-[3/4] overflow-hidden bg-[#f2f4f2]">
+                            <img
+                                class="w-full h-full object-cover"
+                                src={img}
+                                alt={`${data.name} Gallery`}
+                            />
+                        </div>
+                    </div>
+                ))
+            }
+        </section>
+
+        <!-- Product Content -->
+        <article class="px-6 mt-10 max-w-2xl mx-auto">
+            <header class="flex flex-col gap-2">
+                <p
+                    class="text-[10px] uppercase tracking-[0.3em] text-[#767c79]"
+                >
+                    Collection: {data.collection}
+                </p>
+                <h1
+                    class="serif-display text-4xl md:text-5xl text-[#2d3432] leading-tight"
+                >
+                    {data.name}
+                </h1>
+                <p class="text-xl font-light text-[#5a605e] italic">
+                    {formattedPrice}
+                </p>
+            </header>
+
+            <!-- Material & Variants -->
+            <div class="mt-8 flex flex-col gap-8">
+                <div class="flex flex-col gap-3">
+                    <span
+                        class="text-[10px] uppercase tracking-widest text-[#767c79]"
+                        >Material Heritage</span
+                    >
+                    <p
+                        class="text-[#2d3432] text-sm leading-relaxed border-l-2 border-[#7b5556] pl-4"
+                    >
+                        {data.materialHeritage}
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <span
+                        class="text-[10px] uppercase tracking-widest text-[#767c79]"
+                        >Description</span
+                    >
+                    <p class="text-[#5a605e] text-sm leading-relaxed">
+                        {data.description}
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-between items-center">
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-[#767c79]"
+                            >Available Sizing</span
+                        >
+                        <button
+                            class="text-[10px] uppercase tracking-widest text-[#7b5556] underline"
+                            >Size Guide</button
+                        >
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button
+                            class="px-6 py-3 border border-[#adb3b0]/30 text-xs hover:border-[#2d3432] transition-colors"
+                            >S</button
+                        >
+                        <button
+                            class="px-6 py-3 border border-[#adb3b0]/30 text-xs hover:border-[#2d3432] transition-colors"
+                            >M</button
+                        >
+                        <button
+                            class="px-6 py-3 border border-[#adb3b0]/30 text-xs hover:border-[#2d3432] transition-colors"
+                            >L</button
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lihat di Badan -->
+            {
+                data.modelInfo && (
+                    <div class="mt-16 bg-[#f2f4f2] p-8 flex flex-col gap-6">
+                        <h3 class="serif-display text-2xl text-[#2d3432]">
+                            Lihat di Badan
+                        </h3>
+                        <div class="grid grid-cols-2 gap-8 items-center">
+                            <div class="flex flex-col gap-4">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] uppercase text-[#767c79]">
+                                        Model Size
+                                    </span>
+                                    <span class="text-sm font-semibold text-[#2d3432]">
+                                        Wearing {data.modelInfo.wearingSize}
+                                    </span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] uppercase text-[#767c79]">
+                                        Height
+                                    </span>
+                                    <span class="text-sm text-[#2d3432]">
+                                        {data.modelInfo.height}
+                                    </span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] uppercase text-[#767c79]">
+                                        Bust / Waist
+                                    </span>
+                                    <span class="text-sm text-[#2d3432]">
+                                        {data.modelInfo.bustWaist}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="aspect-[3/4] bg-white overflow-hidden shadow-sm">
+                                <img
+                                    class="w-full h-full object-cover grayscale-[30%]"
+                                    src={data.modelInfo.modelImage}
+                                    alt="Model Fit"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Size Guide Table -->
+            {
+                data.sizeChart && data.sizeChart.length > 0 && (
+                    <div class="mt-16 overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="border-b border-[#adb3b0]/20">
+                                    <th class="py-4 text-[10px] uppercase tracking-widest font-normal text-[#767c79]">
+                                        Size Chart (cm)
+                                    </th>
+                                    <th class="py-4 font-normal text-[#2d3432]">
+                                        S
+                                    </th>
+                                    <th class="py-4 font-normal text-[#2d3432]">
+                                        M
+                                    </th>
+                                    <th class="py-4 font-normal text-[#2d3432]">
+                                        L
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-[#5a605e]">
+                                {data.sizeChart.map((row) => (
+                                    <tr class="border-b border-[#adb3b0]/10">
+                                        <td class="py-4 text-[10px] uppercase">
+                                            {row.label}
+                                        </td>
+                                        <td class="py-4">{row.s}</td>
+                                        <td class="py-4">{row.m}</td>
+                                        <td class="py-4">{row.l}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+        </article>
+    </main>
+
+    <WhatsAppFooter productName={data.name} productPrice={formattedPrice} />
+</Layout>
